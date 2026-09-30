@@ -18,7 +18,7 @@ use crate::{
 
 /// This component is used to mark Cameras that bevy_voxel_world should use to determine
 /// which chunks to spawn and despawn.
-#[derive(Component)]
+#[derive(Component, Clone)]
 pub struct VoxelWorldCamera<C> {
     _marker: PhantomData<C>,
 }
