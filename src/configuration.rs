@@ -9,8 +9,9 @@ use bevy::prelude::*;
 pub type VoxelLookupFn<I = u8> =
     Box<dyn FnMut(IVec3, Option<WorldVoxel<I>>) -> WorldVoxel<I> + Send + Sync>;
 pub type LodLevel = u8;
-pub type VoxelLookupDelegate<I = u8> =
-    Box<dyn Fn(IVec3, LodLevel, Option<ChunkData<I>>) -> VoxelLookupFn<I> + Send + Sync>;
+pub type VoxelLookupDelegate<I = u8> = Box<
+    dyn FnOnce(IVec3, LodLevel, Option<ChunkData<I>>) -> VoxelLookupFn<I> + Send + Sync,
+>;
 
 pub type TextureIndexMapperFn<I = u8> = Arc<dyn Fn(I) -> [u32; 3] + Send + Sync>;
 
